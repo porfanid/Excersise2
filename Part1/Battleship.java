@@ -3,11 +3,16 @@ class Battleship{
 
 
     public static void playGame(){
+        //Creating a Start up Animation. Just to be fancy :)
         StartUpAnimation sa = new StartUpAnimation();
         sa.createStartUpAnimation();
+        //Creating a new Scanner for the user's answers
         Scanner answer=new Scanner(System.in);
+
+        // get a response, whether he will play against cpu or another human.
         System.out.println("Do you want to play against computer or CPU(player/CPU).");
-		String versus=answer.nextLine();
+        String versus=answer.nextLine();
+        // check if answer is correct.
 		while (!versus.equals("player")&&!versus.equals("CPU"))
 		{
 			System.out.println("Wrong input. Please try again.");
@@ -15,23 +20,20 @@ class Battleship{
         }
         
 
-
-//        System.out.println("Please enter the name for player 1: ");
-//		String playerName1=answer.nextLine();
-//		System.out.println("Please enter the name for player 2: ");
-//		String playerName2=answer.nextLine();
-//        System.out.println("\n");
-        
-
-
+        /*
+        *   Creating 2 players that will be initialized according to the choice that the user will make later.
+        *   It is not clear the answer that the user will make. So, I have to initialise the fields later.
+        */
         Player player1=new HumanPlayer();
         Player player2;
         if(versus.equals("CPU"))
 		{
+            // if the person wants to battle against CPU then the second player is defined as a ComputerPlayer
 			player2=new ComputerPlayer();
 		}
 		if(versus.equals("player"))
 		{
+            // if the person wants to battle against Human then the second player is defined as a HumanPlayer
 			player2=new HumanPlayer();
         }
         else
@@ -40,6 +42,12 @@ class Battleship{
 //          Otherwise, it doesn't know that these are the only options available.
             player2=null;
         }
+        /*
+        *    Both HumanPlayer and CompputerPlayer have the method createBoard
+        *    as it is an abstract method of Player which is the one that both 
+        *    of these classes extend. So, no matter whether it is a HumanPlayer
+        *    or a ComputerPlayer, I can use the createBoard method
+        */
         System.out.println("Player1 Please enter your ships");
         player1.createBoard();
         System.out.println("Player2 please enter your ships");

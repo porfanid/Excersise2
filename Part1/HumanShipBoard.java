@@ -1,16 +1,10 @@
 import java.util.Scanner;
 class HumanShipBoard extends ShipBoard {
+    // initialising the fields
     private Scanner keyboard = new Scanner(System.in);
     private int ShipId;
     private int[][] initialShipBoard=new int[10][10];
     private int[][] ShipBoard=new int[10][10];
-
-
-
-
-
-
-
     private String initialVertical;
 	private int Vertical;
 	private int initialHorizontalPosition;
@@ -42,6 +36,7 @@ class HumanShipBoard extends ShipBoard {
 			}
 			catch (Exception e)
 			{
+                // if the input cannot be converted to integer...
 				System.out.println("Wrong input. Please try again.");
 				InputString=keyboard.nextLine();
 			}
@@ -64,7 +59,9 @@ class HumanShipBoard extends ShipBoard {
 	private int checkLimits(String InputString)
 	{
 		this.Coordinate=isInteger(InputString);// set the Coordinate var as the integer set.
-		while(myInteger<1)
+        // my Integer is initialised to -2. So it is bellow 1.
+        //If the input is correct, it must be greater than 0 in order for it to place the ship properly
+        while(myInteger<1)
 		{
 			System.out.println("Out of limits. Please try again.");
 			InputString=keyboard.nextLine();
@@ -93,22 +90,23 @@ class HumanShipBoard extends ShipBoard {
 		checkLimits(InputString);
 		// the sum eith size with coordinates. It must not be greater than 10. If it is, it will be out of bounds.
 		int myLimit= size+this.Coordinate-1;
-		// check if size is greater than 10.
+		// check if position and size is greater than 10, as this means that it is out of bounds.
 		while(myLimit>10)
 		{
-			System.out.println("Out of Limits.Please try again." + myLimit + "b" );
+            // if it is, it requests new input.
+			System.out.println("Out of Limits.Please try again.");
 			InputString=keyboard.nextLine();
 			checkLimits(InputString);
 			myLimit= size+this.Coordinate-1;
-			System.out.println("this.Coordinate in while = "+this.Coordinate);
-			System.out.println("My Limit in while = "+myLimit);
+//			System.out.println("this.Coordinate in while = "+this.Coordinate);
+//			System.out.println("My Limit in while = "+myLimit);
 		}
 	}
 
 
 
 
-
+// this is a method created to print any 10x10 board.
     private void printBoard(int[][] ShipBoard)
 	{
 		// print board
@@ -127,8 +125,10 @@ class HumanShipBoard extends ShipBoard {
 
 
 
-    
+    // I have to create a methon named enterAllShips, as it is an abstract method in ShipBoard.
     public void enterAllShips(){
+        //Using a field in for loop is risky, and some programming languages do not allow that.
+        //Fortunately, java is not one of them. However, it could be useful if used correctly.
         for(this.ShipId=0;this.ShipId<5;this.ShipId++)
             {
                 System.out.println("Ship: "+(this.ShipId+1));
@@ -136,6 +136,9 @@ class HumanShipBoard extends ShipBoard {
             }
             this.initialShipBoard=this.ShipBoard;
     }
+
+
+
 
 
     private void enterShipManually(int ShipId)
@@ -192,7 +195,10 @@ class HumanShipBoard extends ShipBoard {
         this.initialVerticalPosition=myInteger;
         // initialHorizontalPosition-1 (0<x<9   +sizeY-1 (contains x)
         if(this.initialDirection.equals("V"))
-        {	
+        {
+            // this is adding all the numbers in the board. If all the places are blank it should be 0.
+            //Otherwise, it means that there is a ship there and it's id has been added to checkplace.
+            //So the position is not free.
             for (int i=initialHorizontalPosition-1;i<initialHorizontalPosition+sizeY-1;i++)
             {
                 checkplace=checkplace+ShipBoard[i][initialVerticalPosition-1];
@@ -206,6 +212,7 @@ class HumanShipBoard extends ShipBoard {
             }
             else
             {
+                // if the ship has not been placed on the board, it reduces the ShipId by 1, so that the next time it tries again.
                 System.out.print("Occupied position. Retry\n");
                 this.ShipId--;
             }
@@ -213,6 +220,10 @@ class HumanShipBoard extends ShipBoard {
         else
         {
             // initialHorizontalPosition-1 (0<x<9   +sizeY-1 (contains x)
+
+            // this is adding all the numbers in the board. If all the places are blank it should be 0.
+            //Otherwise, it means that there is a ship there and it's id has been added to checkplace.
+            //So the position is not free.
             for (int i=initialVerticalPosition-1;i<initialVerticalPosition+sizeX-1;i++)
             {
                 checkplace=checkplace+ShipBoard[initialHorizontalPosition-1][i];
@@ -227,6 +238,7 @@ class HumanShipBoard extends ShipBoard {
             }
             else
             {
+                // if the ship has not been placed on the board, it reduces the ShipId by 1, so that the next time it tries again.
                 System.out.print("Occupied position. Retry\n");
                 this.ShipId--;
             }

@@ -8,7 +8,7 @@ class Paper extends Entry{
 /*
 * There are many constructors available so that it doesn't matter in which order you write the title, year, Conference.
 */
-
+//----------------------------------------------------------------------------------------------------
     public Paper(String title, int year, Conference conf){
         this.title=title;
         this.year=year;
@@ -48,7 +48,7 @@ class Paper extends Entry{
     public void addAuthor(Researcher newAuthor){
         authorList.add(newAuthor);
     }
-
+//----------------------------------------------------------------------------------------------
 
 /*
 * I found this online. It is being used to remove the last comma from the toString method.

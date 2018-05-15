@@ -1,3 +1,6 @@
-abstract class Entry{
+abstract/**
+* Class Entry
+*/
+class Entry{
     abstract void display();
 }

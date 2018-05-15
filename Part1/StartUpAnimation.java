@@ -352,7 +352,8 @@ public class StartUpAnimation
 		try
 		{
 			Slow.Print("BOOT SEQUENCE COMPLETE...");
-			System.out.print("\n");
+            System.out.print("\n");
+            clearConsole();
 			Slow.Print("STARTING THE BATTLESHIP...");
 		}
 		catch(Exception e)
