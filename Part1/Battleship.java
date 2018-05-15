@@ -2,6 +2,40 @@ import java.util.Scanner;
 class Battleship{
 
 
+    private void clearConsole()
+	{
+		String osName=System.getProperty("os.name");
+		if(osName.equals("Linux"))
+		{
+			try
+			{
+				System.out.print("\033[H\033[2J");
+			}
+			catch(Exception e)
+			{
+//				System.out.println("Didn't work 2");
+			}
+			return;
+		}
+		
+		
+//****************************************************************************		
+		osName=System.getProperty("sun.desktop");
+		if(osName.equals("windows"))
+		{
+			try
+			{
+				new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+			}
+			catch(Exception e)
+			{
+//				System.out.println("Didn't work 1");
+			}
+			return;
+		}
+	}
+
+
     public static void playGame(){
         //Creating a Start up Animation. Just to be fancy :)
         StartUpAnimation sa = new StartUpAnimation();
