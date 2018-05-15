@@ -40,7 +40,9 @@ class Paper extends Entry{
         Paper(title,year,new Conference(conf));
     }
 
-
+    public Paper(String title, int year, String conf){
+        Paper(title,year,new Conference(conf));
+    }
 
 
     public void addAuthor(Researcher newAuthor){
@@ -59,34 +61,41 @@ class Paper extends Entry{
     }
 
 
-
+/*
+* Display class: exactly as asked.
+*/
     public void display(){
+        //the title and year...
         String data="Title: "+title+"\nyear: "+year+"\nResearchers: ";
-        
+        // adding all the researchers...
         for (Researcher i: authorList){
             System.out.println("hi");
             data+=i.toString()+",";
         }
-
+//      removing the last comma
         data=removeLastChar(data);
+        // adding the Conference details.
         data+="\nConference: "+conf.toString();
-
+//      printing the data.
         System.out.println(data);
     }
 
 
 
 
-
+/*
+* toString class: exactly as asked.
+*/
     public String toString(){
+        // adding the title, a dot and a space...
         String data=title+". "+" ";
-        
+        // adding all the researchers
         for (Researcher i: authorList){
             data+=i.toString()+",";
         }
         
-//        data=removeLastChar(data);
-        data+="\nConference: "+conf.toString()+year;
+//      adding the conference and the year.
+        data+="Conference: "+conf.toString()+year;
         return data;
     }
 
