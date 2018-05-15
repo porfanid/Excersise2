@@ -8,6 +8,22 @@ import java.lang.*;
 class Battleship{
     static Scanner keyboard=new Scanner(System.in);
 
+
+    //	print the board
+	private static void printBoard(int[][] ShipBoard)
+	{
+		// print board
+		for(int i=0;i<10;i++)
+		{
+			for(int j=0;j<10;j++)
+			{
+				System.out.print(ShipBoard[i][j]+" ");
+			}
+			System.out.print("\n");
+		}
+	}
+
+
     private static void clearConsole()
 	{
 		String osName=System.getProperty("os.name");
@@ -76,8 +92,7 @@ class Battleship{
         RandomStrategy pcStrategy= new RandomStrategy();
         Player player1=new HumanPlayer(playerName1);
 
-        System.out.println("The ship board for player: "+playerName1+" is :\n");
-		printBoard(ShipBoardPlayer1);
+        
         clearConsole();
 
 
@@ -104,9 +119,15 @@ class Battleship{
         }
 
         //****************************************************************************		
-//		return the ship and strike board of player 2
-		int[][] ShipBoardPlayer2=boardPlayer2.returnBoard();
-		int[][] StrikeBoardPlayer2=player2.returnStrikeBoard();
+        ShipBoard boardPlayer1=new HumanShipBoard();
+        ShipBoard boardPlayer2;
+        
+        if(isCPU){
+            boardplayer2=new ComputerShipBoard();
+        }
+        else{
+            boardPlayer2=new HumanShipBoard();
+        }
 //****************************************************************************		
 		
 		
@@ -127,17 +148,14 @@ class Battleship{
         System.out.println("Player2 please enter your ships");
         //player2.createBoard();
 
-        ShipBoard boardPlayer1=new HumanShipBoard();
-        ShipBoard boardPlayer2;
-        if(isCPU){
-            boardplayer2=new ComputerShipBoard();
-        }
-        else{
-            boardPlayer2=new HumanShipBoard();
-        }
-        int[][] ShipBoardPlayer1=boardPlayer1.returnBoard();
-        int[][] StrikeBoardPlayer1=player1.returnStrikeBoard();
         
+        int[][] ShipBoardPlayer1=boardPlayer1.returnBoard();
+        System.out.println("The ship board for player: "+playerName1+" is :\n");
+		printBoard(ShipBoardPlayer1);
+        int[][] StrikeBoardPlayer1=player1.returnStrikeBoard();
+        //		return the ship and strike board of player 2
+		int[][] ShipBoardPlayer2=boardPlayer2.returnBoard();
+		int[][] StrikeBoardPlayer2=player2.returnStrikeBoard();
 
 
 
