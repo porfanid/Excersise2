@@ -1,11 +1,14 @@
 import java.util.Scanner;
 class HumanPlayer extends Player{
 
+//	initialising the fields
     private Scanner keyboard=new Scanner(System.in);
     private int[][] strikeBoard=new int[10][10];
     private int Coordinate;
     private int myInteger;
 
+
+	// initialising the constructor.
     public HumanPlayer(){
 
     }
@@ -15,27 +18,25 @@ class HumanPlayer extends Player{
 	{
 		return strikeBoard;
     }
-    
 
 
 
-
-    
-
-
-
-
-
-
+//	This method is being used to create the board.
     public void createBoard() {
         HumanShipBoard Board=new HumanShipBoard();
         Board.enterAllShips();
     }
 
+
+
+// this method enables the player to achieve the next strike.
     public int[] nextStrike() {
+
 		boolean checkHit=true;
 		String ReadLine;
 		int[] coordinates=new int[2];
+//******************************************************************************************
+		// This part of the code checks if the position has been stroke previously. 
 		while(checkHit)
 		{
 			System.out.println("Please enter the horizontal position to strike:");
@@ -57,30 +58,15 @@ class HumanPlayer extends Player{
 				System.out.println("The posision has been stoke previously. Please try again.");
 			}
 		}
+//*****************************************************************************************************
+//		if it hasn't it returns an int[] with the coordinates of the next strike.
 		return coordinates;
-    }
+	}
+	
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//	This method checks if a string can be converted to int
     private int isInteger(String InputString)
 	{
 //		System.out.println("a1 "+  " - " + InputString);
@@ -106,26 +92,6 @@ class HumanPlayer extends Player{
 		return myInteger;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	//--------------------------------------------------------------------------------------
     // Function BetweenLimits
 	// check if the input with the size of the ship with the coordinates are greater than 10. 
@@ -133,17 +99,15 @@ class HumanPlayer extends Player{
 	private void BetweenLimits(int size,String InputString)
 	{
 		checkLimits(InputString);
-		// the sum eith size with coordinates. It must not be greater than 10. If it is, it will be out of bounds.
+		// the sum of size with coordinates. It must not be greater than 10. If it is, it will be out of bounds.
 		int myLimit= size+this.Coordinate-1;
-		// check if size is greater than 10.
+		// check if size is greater than 10. If it is, the ship is out of the bounds of the board.
 		while(myLimit>10)
 		{
-			System.out.println("Out of Limits.Please try again." + myLimit + "b" );
+			System.out.println("Out of Limits.Please try again.");
 			InputString=keyboard.nextLine();
 			checkLimits(InputString);
 			myLimit= size+this.Coordinate-1;
-//			System.out.println("this.Coordinate in while = "+this.Coordinate);
-//			System.out.println("My Limit in while = "+myLimit);
 		}
 	}
 	

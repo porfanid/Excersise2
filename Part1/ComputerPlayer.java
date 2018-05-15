@@ -1,7 +1,7 @@
 import java.util.Random;
 class ComputerPlayer extends Player{
 
-
+// Initialise the fields
     private Random rand = new Random();
 	private String playerName;
 //	private Scanner keyboard=new Scanner(System.in);
@@ -10,34 +10,39 @@ class ComputerPlayer extends Player{
 	private int Coordinate;
 	private int[][] strikeBoard=new int[10][10];
 
-
+// initialise the constructor
     public ComputerPlayer(){
 
     }
 
-
+// create the ShipBoard
+// This is declared as an abstract method in class Player, which means that I have to redifine it here.
     public void createBoard() {
         ComputerShipBoard Board=new ComputerShipBoard();
         Board.enterAllShips();
     }
 
-
+// return an int[] with the next hit
     public int[] nextStrike()
 	{
 		boolean checkHit=true;
 		String ReadLine;
 		int[] coordinates=new int[2];
+
+		// If the position has been hit before it executes the code within the while.
 		while(checkHit)
 		{
-//			System.out.println("Please enter the horizontal position to strike:");
+
 			ReadLine=String.valueOf((rand.nextInt(10)+1));
 			int Xcoord=BetweenLimits(ReadLine);
-//			System.out.println("Please enter the vertical position to strike:");
+			
 			ReadLine=String.valueOf((rand.nextInt(10)+1));
 			int Ycoord=BetweenLimits(ReadLine);
+			
 			//int[] coordinates={Xcoord,Ycoord};
 			coordinates [0]=Xcoord;
 			coordinates [1]=Ycoord;
+			
 			//check if posision has been stoke previously
 			if(strikeBoard[coordinates[0]-1][coordinates[1]-1]==0)
 			{
@@ -53,7 +58,7 @@ class ComputerPlayer extends Player{
 
 
 
-
+// check if string can be converted to int
     private int isInteger(String InputString)
 	{
 //		System.out.println("a1 "+  " - " + InputString);
@@ -82,7 +87,7 @@ class ComputerPlayer extends Player{
 	
 	
 	
-	
+	//check if the position entered by user is within the limits of the board
 	private int checkLimits(String InputString)
 	{
 		this.Coordinate=isInteger(InputString);// set the Coordinate var as the integer set.
@@ -100,10 +105,6 @@ class ComputerPlayer extends Player{
     // Function BetweenLimits
 	// check if the input with the size of the ship with the coordinates are greater than 10. 
 	//--------------------------------------------------------------------------------------
-	
-	
-	
-	
 	private int BetweenLimits(String InputString)
 	{
 		checkLimits(InputString);

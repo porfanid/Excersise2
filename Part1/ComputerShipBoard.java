@@ -1,10 +1,9 @@
 import java.util.Random;
 class ComputerShipBoard extends ShipBoard{
     
-    
+	//Initialising the fields
+	
     private Random rand = new Random();
-//	private Scanner keyboard = new Scanner(System.in);
-//	private int[] ShipSizes={2,3,4,5};
 	private String initialVertical;
 	private int Vertical;
 	private int initialHorizontalPosition;
@@ -19,7 +18,10 @@ class ComputerShipBoard extends ShipBoard{
 	private int ShipId;
     
     
-    
+	
+	
+
+	//This is a method that can print any 10x10 board
     
     private void printBoard(int[][] ShipBoard)
 	{
@@ -40,7 +42,7 @@ class ComputerShipBoard extends ShipBoard{
     
     
     
-    
+    //This method checks if a string can be converted to int
     private int isInteger(String InputString)
 	{
 		// Check if "InputString" is text then isInteger=0
@@ -62,14 +64,18 @@ class ComputerShipBoard extends ShipBoard{
 			}
 		}
 		return myInteger;
-    }
-    
+	}
+	
+
+    // this method checks if the whole ship is within the board.
     private void AutomaticBetweenLimits(int size,String InputString)
 	{
 		checkLimits(InputString);
 		// the sum eith size with coordinates. It must not be greater than 10. If it is, it will be out of bounds.
 		int myLimit= size+this.Coordinate-1;
-		// check if size is greater than 10.
+		// check if the position and size are greater than 10.
+		//If they are, that means that the entire ship fits the board.
+		//Otherwise, it doesn't.
 		while(myLimit>10)
 		{
 			System.out.println("Out of Limits.Please try again.");
@@ -80,7 +86,7 @@ class ComputerShipBoard extends ShipBoard{
     }
     
 
-
+	// this method checks if the position the user typed in is within the limits of the board
     private int checkLimits(String InputString)
 	{
 		this.Coordinate=isInteger(InputString);// set the Coordinate var as the integer set.
@@ -112,9 +118,7 @@ class ComputerShipBoard extends ShipBoard{
 		{
 			size=ShipId+1;
 		}
-		// Check the initial position. Whether it is horizontal or vertical.
-		//System.out.println("Please enter the direction of the ship(V/H):");
-		//String initialDirection=keyboard.nextLine();
+		// Set the initial position. Whether it is horizontal or vertical.
 		int  Direction = rand.nextInt(2);
 		if (Direction==0)
 		{
@@ -149,10 +153,14 @@ class ComputerShipBoard extends ShipBoard{
 		// initialHorizontalPosition-1 (0<x<9   +sizeY-1 (contains x)
 		if(this.initialDirection.equals("V"))
 		{	
+			//These lines of code add all the numbers of the board that are to be used up by the ship.
+			//if the sum is greater than 0, then that means that one or more fields are different than 0,
+			//which means that there is a ship over there.
 			for (int i=initialHorizontalPosition-1;i<initialHorizontalPosition+sizeY-1;i++)
 			{
 				checkplace=checkplace+ShipBoard[i][initialVerticalPosition-1];
 			}
+
 			if(checkplace==0)
 			{
 				for (int i=initialHorizontalPosition-1;i<initialHorizontalPosition+sizeY-1;i++)
@@ -169,10 +177,14 @@ class ComputerShipBoard extends ShipBoard{
 		else
 		{
 			// initialHorizontalPosition-1 (0<x<9   +sizeY-1 (contains x)
+			//These lines of code add all the numbers of the board that are to be used up by the ship.
+			//if the sum is greater than 0, then that means that one or more fields are different than 0,
+			//which means that there is a ship over there.
 			for (int i=initialVerticalPosition-1;i<initialVerticalPosition+sizeX-1;i++)
 			{
 				checkplace=checkplace+ShipBoard[initialHorizontalPosition-1][i];
 			}
+
 			if(checkplace==0)
 			{
 				for (int i=initialVerticalPosition-1;i<initialVerticalPosition+sizeX-1;i++)
@@ -191,7 +203,7 @@ class ComputerShipBoard extends ShipBoard{
 	}
 
     
-
+	//I have to declare this method, as it has been declared as abstract in Shipboard and ComputerShipBoard extends ShipBoard.
     public void enterAllShips()
 	{
 		for(this.ShipId=0;this.ShipId<5;this.ShipId++)
