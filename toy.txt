@@ -1,0 +1,12 @@
+Data mining applications
+Clark Kent, Bruce Wayne
+KDD
+2018
+Theory of data mining
+Clark Kent, Peter Parker
+KDD
+2017
+Communication theory applications
+Bruce Lee, Peter Parker
+SODA
+2017
