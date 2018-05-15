@@ -11,8 +11,8 @@ class ComputerPlayer extends Player{
 	private int[][] strikeBoard=new int[10][10];
 
 // initialise the constructor
-    public ComputerPlayer(){
-
+    public ComputerPlayer(String playerName){
+		this.playerName=playerName;
     }
 
 // create the ShipBoard
@@ -20,7 +20,55 @@ class ComputerPlayer extends Player{
     public void createBoard() {
         ComputerShipBoard Board=new ComputerShipBoard();
         Board.enterAllShips();
+	}
+	
+// return the strikeBoard
+    public int[][] returnStrikeBoard()
+	{
+		return strikeBoard;
     }
+// and the shipBoard
+	public int[][] returnBoard()
+	{
+		return ShipBoardP1;
+	}
+
+
+
+//	return the computer's name
+	
+	
+	public String toString()
+	{
+		return playerName;
+	}
+
+
+
+
+	// update the Strike board with the new hit	
+	public int[][] update(int[] coordinates, boolean isHit)
+	{
+		System.out.println("Update Function: ");
+		System.out.println("coords are: " +coordinates[0]+" , "+coordinates[1]);
+		System.out.println("isHit= "+ isHit);
+		if(isHit)
+		{
+			strikeBoard[coordinates[0]-1][coordinates[1]-1]=1;
+		}
+		else
+		{
+			strikeBoard[coordinates[0]-1][coordinates[1]-1]=-1;
+		}
+		return strikeBoard;
+	}
+
+
+
+
+
+
+
 
 // return an int[] with the next hit
     public int[] nextStrike()

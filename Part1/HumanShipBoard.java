@@ -12,7 +12,7 @@ class HumanShipBoard extends ShipBoard {
 	private String initialDirection;
 	private int myInteger=-2;
 	private int Coordinate;
-
+    private boolean isHit;
 
 
 
@@ -138,6 +138,88 @@ class HumanShipBoard extends ShipBoard {
     }
 
 
+
+
+
+    // 	check if the strike hit any ship
+	public boolean getStrike(int x, int y)
+	{
+		boolean isHit;
+//		boolean checkSank=true;
+		int hitId=ShipBoard[x-1][y-1];
+		if (hitId==0)
+		{
+			isHit=false;			
+		}
+		else
+		{
+			isHit=true;
+			ShipBoard[x-1][y-1]=0;
+			// check if all places of ship are hit
+			boolean checkSank=lastStrikeSankShip(x, y, hitId);			
+        }
+        		
+//		System.out.print("get strike checkSank = "+checkSank);
+
+
+		this.isHit=isHit;
+        //		System.out.print("get strike isHit= "+isHit);
+        return isHit;
+    }
+
+
+
+
+//	check if the last strike sank the ship
+	
+    public boolean lastStrikeSankShip(int x, int y, int hitId)
+    {
+        boolean checkSank=true;
+        // check if all places of ship are hit
+        for(int i=0;i<10;i++)
+        {
+            for(int j=0;j<10;j++)
+            {
+                if(ShipBoard[i][j]==hitId)
+                {
+                    checkSank=false;
+                }
+            }
+        }
+        return checkSank;
+    }
+
+    // return the variable isHit	
+	
+	public boolean returnisHit()
+	{
+		return isHit;
+    }
+
+    public int[][] returnBoard()
+	{
+		return ShipBoard;
+    }
+    
+    
+    
+
+    // checkif all ships have been sank
+	public boolean allShipsSank()
+	{
+		boolean AllSank=true;
+		for(int i=0;i<10;i++)
+		{
+			for(int j=0;j<10;j++)
+			{
+				if(ShipBoard[i][j]!=0)
+				{
+					AllSank=false;
+				}
+			}
+		}
+		return AllSank;
+	}
 
 
 

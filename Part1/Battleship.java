@@ -49,9 +49,9 @@ class Battleship{
         *    or a ComputerPlayer, I can use the createBoard method
         */
         System.out.println("Player1 Please enter your ships");
-        player1.createBoard();
+        //player1.createBoard();
         System.out.println("Player2 please enter your ships");
-        player2.createBoard();
+        //player2.createBoard();
     }
 
 

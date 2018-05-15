@@ -2,16 +2,30 @@ import java.util.Scanner;
 class HumanPlayer extends Player{
 
 //	initialising the fields
-    private Scanner keyboard=new Scanner(System.in);
-    private int[][] strikeBoard=new int[10][10];
-    private int Coordinate;
-    private int myInteger;
+	private String playerName;
+	private Scanner keyboard=new Scanner(System.in);
+	private int[][] ShipBoardP1;
+	private int myInteger;
+	private int Coordinate;
+	private int[][] strikeBoard=new int[10][10];
 
 
 	// initialising the constructor.
-    public HumanPlayer(){
+    public HumanPlayer(String playerName){
+		this.playerName=playerName;
+	}
 
-    }
+	// return the players name	
+	public String toString()
+	{
+		return playerName;
+	}
+	
+
+	public int[][] returnBoard()
+	{
+		return ShipBoardP1;
+	}
 
 
     public int[][] returnStrikeBoard()
@@ -25,7 +39,26 @@ class HumanPlayer extends Player{
     public void createBoard() {
         HumanShipBoard Board=new HumanShipBoard();
         Board.enterAllShips();
-    }
+	}
+	
+
+	// update the strikeboard with the hit	
+	public int[][] update(int[] coordinates, boolean isHit)
+	{
+//		System.out.println("Update Function: ");
+//		System.out.println("coords are: " +coordinates[0]+" , "+coordinates[1]);
+//		System.out.println("isHit= "+ isHit);
+		if(isHit)
+		{
+			strikeBoard[coordinates[0]-1][coordinates[1]-1]=1;
+		}
+		else
+		{
+			strikeBoard[coordinates[0]-1][coordinates[1]-1]=-1;
+		}
+		return strikeBoard;
+	}
+
 
 
 
