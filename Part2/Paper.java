@@ -48,6 +48,7 @@ class Paper extends Entry{
     public void addAuthor(Researcher newAuthor){
         authorList.add(newAuthor);
     }
+// end of the instructors :)
 //----------------------------------------------------------------------------------------------
 
 /*
