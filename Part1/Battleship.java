@@ -106,14 +106,12 @@ class Battleship{
 
 
 
-        
+        //player1.createBoard();
 
 
 
 
 
-
-        
         System.out.println("Thanks for playing. This was a really nice game.");
         try
         {

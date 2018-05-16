@@ -10,7 +10,7 @@ class ComputerPlayer extends Player{
 	private int Coordinate;
 	private int[][] ShipBoardP1=new int[10][10];
 	private int[][] strikeBoard=new int[10][10];
-	private ComputerShipBoard Board=new ComputerShipBoard();
+	
 
 // initialise the constructor
     public ComputerPlayer(String playerName){
@@ -36,9 +36,20 @@ class ComputerPlayer extends Player{
 // create the ShipBoard
 // This is declared as an abstract method in class Player, which means that I have to redifine it here.
     public void createBoard() {
-		System.out.println("This is createBoard method");
-     //   ComputerShipBoard Board=new ComputerShipBoard();
-        Board.enterAllShips();
+		//System.out.println("This is createBoard method in ComputerPlayer");
+		ComputerShipBoard Board=new ComputerShipBoard();
+	 //   ComputerShipBoard Board=new ComputerShipBoard();
+	 	//System.out.println("Board: "+Board);
+		Board.enterAllShips();
+
+	
+	
+		ShipBoardP1=Board.returnBoard();
+		//System.out.println("This is the returnBoard method in ComputerPlayer");
+		printBoard(ShipBoardP1);
+	
+	
+		//System.out.println("Exiting createBoard");
 	}
 	
 // return the strikeBoard
@@ -47,12 +58,14 @@ class ComputerPlayer extends Player{
 		return strikeBoard;
     }
 // and the shipBoard
-	public int[][] returnBoard()
+	
+public int[][] returnBoard()
 	{
-		ShipBoardP1=Board.returnBoard();
-		System.out.println("Hello");
-		printBoard(ShipBoardP1);
-		return Board.returnBoard();
+		//ShipBoardP1=Board.returnBoard();
+		
+		System.out.println("This is the returnBoard method in ComputerPlayer");
+		//printBoard(ShipBoardP1);
+		return ShipBoardP1;
 	}
 
 

@@ -8,7 +8,7 @@ class HumanPlayer extends Player{
 	private int myInteger;
 	private int Coordinate;
 	private int[][] strikeBoard=new int[10][10];
-	private HumanShipBoard Board=new HumanShipBoard();
+	
 
 	// initialising the constructor.
     public HumanPlayer(String playerName){
@@ -25,7 +25,7 @@ class HumanPlayer extends Player{
 
 	public int[][] returnBoard()
 	{
-		ShipBoardP1=Board.returnBoard();
+		
 		return ShipBoardP1;
 	}
 
@@ -39,8 +39,10 @@ class HumanPlayer extends Player{
 
 //	This method is being used to create the board.
     public void createBoard() {
-		System.out.println("This is createBoard method");
-        Board.enterAllShips();
+		//System.out.println("This is createBoard method in HumanPlayer.");
+		HumanShipBoard Board=new HumanShipBoard();
+		Board.enterAllShips();
+		ShipBoardP1=Board.returnBoard();
 	}
 	
 
