@@ -118,9 +118,9 @@ class RandomStrategy
 	
 	public int[][] update(int[] coordinates, boolean isHit)
 	{
-		System.out.println("Update Function: ");
-		System.out.println("coords are: " +coordinates[0]+" , "+coordinates[1]);
-		System.out.println("isHit= "+ isHit);
+		//System.out.println("Update Function: ");
+		//System.out.println("coords are: " +coordinates[0]+" , "+coordinates[1]);
+		//System.out.println("isHit= "+ isHit);
 		if(isHit)
 		{
 			strikeBoard[coordinates[0]-1][coordinates[1]-1]=1;

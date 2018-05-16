@@ -1,3 +1,7 @@
+/*
+NAME: PAVLOS ORFANIDIS
+AM: 4134
+*/
 import java.util.HashMap;
 abstract/**
 * Class Entry
