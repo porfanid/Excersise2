@@ -14,6 +14,7 @@ class ComputerPlayer extends Player{
 
 // initialise the constructor
     public ComputerPlayer(String playerName){
+		super();
 		this.playerName=playerName;
 	}
 	
@@ -35,6 +36,7 @@ class ComputerPlayer extends Player{
 // create the ShipBoard
 // This is declared as an abstract method in class Player, which means that I have to redifine it here.
     public void createBoard() {
+		System.out.println("This is createBoard method");
      //   ComputerShipBoard Board=new ComputerShipBoard();
         Board.enterAllShips();
 	}

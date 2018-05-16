@@ -299,6 +299,7 @@ class ComputerShipBoard extends ShipBoard{
 	//I have to declare this method, as it has been declared as abstract in Shipboard and ComputerShipBoard extends ShipBoard.
     public void enterAllShips()
 	{
+		System.out.println("This is enterAllShips method");
 		for(this.ShipId=0;this.ShipId<5;this.ShipId++)
 		{
 			System.out.println("Ship: "+(this.ShipId+1));

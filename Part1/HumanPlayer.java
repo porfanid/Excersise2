@@ -12,6 +12,7 @@ class HumanPlayer extends Player{
 
 	// initialising the constructor.
     public HumanPlayer(String playerName){
+		super();
 		this.playerName=playerName;
 	}
 
@@ -38,6 +39,7 @@ class HumanPlayer extends Player{
 
 //	This method is being used to create the board.
     public void createBoard() {
+		System.out.println("This is createBoard method");
         Board.enterAllShips();
 	}
 	

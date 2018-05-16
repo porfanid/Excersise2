@@ -127,6 +127,7 @@ class HumanShipBoard extends ShipBoard {
 
     // I have to create a methon named enterAllShips, as it is an abstract method in ShipBoard.
     public void enterAllShips(){
+        System.out.println("This is enterAllShips method");
         //Using a field in for loop is risky, and some programming languages do not allow that.
         //Fortunately, java is not one of them. However, it could be useful if used correctly.
         for(this.ShipId=0;this.ShipId<5;this.ShipId++)
@@ -198,6 +199,7 @@ class HumanShipBoard extends ShipBoard {
 
     public int[][] returnBoard()
 	{
+        System.out.println("This is returnBoard method");
 		return ShipBoard;
     }
     
