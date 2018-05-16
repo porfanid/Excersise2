@@ -10,8 +10,8 @@ import java.lang.*;
 
 
 class Battleship{
-    static Scanner keyboard=new Scanner(System.in);
-
+    private static Scanner keyboard=new Scanner(System.in);
+	private static boolean isCPU;
 
     //	print the board
 	private static void printBoard(int[][] ShipBoard)
@@ -63,66 +63,14 @@ class Battleship{
 
 
     public static void playGame(Player player1, Player player2){
-        //Creating a Start up Animation. Just to be fancy :)
-        
-        StartUpAnimation sa = new StartUpAnimation();
-        sa.createStartUpAnimation();
-        
-        //Creating a new Scanner for the user's answers
-        SlowPrint Slow=new SlowPrint();
-        Scanner answer=new Scanner(System.in);
-
-        // get a response, whether he will play against cpu or another human.
-        System.out.println("Do you want to play against computer or CPU(player/CPU).");
-        String versus=answer.nextLine();
-        // check if answer is correct.
-		while (!versus.equals("player")&&!versus.equals("CPU"))
-		{
-			System.out.println("Wrong input. Please try again.");
-			versus=answer.nextLine();
-        }
-        
-        
-        //		Player enter the names
-		System.out.println("Please enter the name for player 1: ");
-		String playerName1=keyboard.nextLine();
-		System.out.println("Please enter the name for player 2: ");
-		String playerName2=keyboard.nextLine();
-		System.out.println("\n");
-
-        boolean isCPU;
-        if(versus.equals("CPU")){
-            isCPU=true;
-        }
-        else{
-            isCPU=false;
-        }
-        System.out.println("isCPU: "+isCPU);
-
-
-
-        System.out.println("Place your ships player: "+playerName1);
-        player1=new HumanPlayer(playerName1);
+		String playerName1=player1.toString();
+		String playerName2=player2.toString();
         int[][] ShipBoardPlayer1=player1.returnBoard();
         int[][] StrikeBoardPlayer1=player1.returnStrikeBoard();
         ShipBoard boardPlayer1=player1.returnShipBoard();
 //****************************************************************************		
 //		print the shipboard
-        System.out.println("The ship board for player: "+playerName1+" is :\n");
-        printBoard(ShipBoardPlayer1);
-//****************************************************************************		
-        clearConsole();
-//****************************************************************************
-
-
-
-        System.out.println("Place your ships player: "+playerName2);
-        if(isCPU){
-            player2=new ComputerPlayer(playerName2);
-        }
-        else{
-            player2=new HumanPlayer(playerName2);
-        }
+        
         ShipBoard boardPlayer2=player2.returnShipBoard();
 
         if(isCPU){
@@ -225,6 +173,74 @@ class Battleship{
     public static void main(String[] args) {
         Player player1=null;
         Player player2=null;
-        playGame(player1,player2);
+		
+		
+
+
+		//Creating a Start up Animation. Just to be fancy :)
+        
+        StartUpAnimation sa = new StartUpAnimation();
+        sa.createStartUpAnimation();
+        
+        //Creating a new Scanner for the user's answers
+        SlowPrint Slow=new SlowPrint();
+        Scanner answer=new Scanner(System.in);
+
+        // get a response, whether he will play against cpu or another human.
+        System.out.println("Do you want to play against computer or CPU(player/CPU).");
+        String versus=answer.nextLine();
+        // check if answer is correct.
+		while (!versus.equals("player")&&!versus.equals("CPU"))
+		{
+			System.out.println("Wrong input. Please try again.");
+			versus=answer.nextLine();
+        }
+        
+        
+        //		Player enter the names
+		System.out.println("Please enter the name for player 1: ");
+		String playerName1=keyboard.nextLine();
+		System.out.println("Please enter the name for player 2: ");
+		String playerName2=keyboard.nextLine();
+		System.out.println("\n");
+
+        
+        if(versus.equals("CPU")){
+            isCPU=true;
+        }
+        else{
+            isCPU=false;
+        }
+
+
+
+        System.out.println("Place your ships player: "+playerName1);
+		player1=new HumanPlayer(playerName1);
+		
+
+
+//*************************************************************************************
+		int[][] ShipBoardPlayer1=player1.returnBoard();
+		System.out.println("The ship board for player: "+playerName1+" is :\n");
+		printBoard(ShipBoardPlayer1);
+//****************************************************************************		
+		clearConsole();
+//****************************************************************************
+
+
+
+		System.out.println("Place your ships player: "+playerName2);
+		if(isCPU){
+			player2=new ComputerPlayer(playerName2);
+		}
+		else{
+			player2=new HumanPlayer(playerName2);
+		}
+
+
+
+
+
+		playGame(player1,player2);
     }
 }
