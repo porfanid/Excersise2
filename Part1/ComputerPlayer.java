@@ -112,7 +112,8 @@ RandomStrategy pcStrategy= new RandomStrategy();
 // return an int[] with the next hit
     public int[] nextStrike()
 	{
-		return pcStrategy.nextStrike();
+		int[] coordinates=pcStrategy.nextStrike();
+		return coordinates;
 	}
 
 

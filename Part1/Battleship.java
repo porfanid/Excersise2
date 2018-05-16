@@ -61,8 +61,8 @@ class Battleship{
     public static void playGame(Player player1, Player player2){
         //Creating a Start up Animation. Just to be fancy :)
         
-        //StartUpAnimation sa = new StartUpAnimation();
-        //sa.createStartUpAnimation();
+        StartUpAnimation sa = new StartUpAnimation();
+        sa.createStartUpAnimation();
         
         //Creating a new Scanner for the user's answers
         SlowPrint Slow=new SlowPrint();
@@ -140,7 +140,7 @@ class Battleship{
 		System.out.println("The ship board for player: "+playerName2+" is :\n");
 		printBoard(ShipBoardPlayer2);
 //****************************************************************************
-boolean allSank=false;
+        boolean allSank=false;
 		while(!allSank)
 		{
 //****************************************************************************			
