@@ -3,10 +3,12 @@
 
 1st Excersise works perfectly.
 
+I also added the ability to play music from a wav file. however, this won't be available for a while, as it needs some modifications.
+
+
+
 
 The 2nd Excersise is still under construction.
-
-I am not quite sure about the Paper class, as it is supposed to initialise the Conference field while it doesn't. I need to ask the proffessor about that too.
 
 Also, Paper class has too many constructors to make it as plain as possible to use it without having to remember the sequence of arguments that are necessary for it to work.
 
