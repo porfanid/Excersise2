@@ -43,7 +43,8 @@ class Database{
             int year=Integer.parseInt(yearAsString);
             
             // creating the paper
-            Paper newPaper=new Paper(title,year);
+            Paper newPaper=new Paper(title,year,new Conference(conference));
+            
             //adding the paper to ArrayList objects.
             objects.add(newPaper);
 

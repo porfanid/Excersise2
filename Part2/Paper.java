@@ -21,31 +21,31 @@ class Paper extends Entry{
     
 
     public Paper(int year, String title, Conference conf){
-        Paper(title,year,conf);
+        this(title,year,conf);
     }
 
     public Paper(String title,Conference conf, int year){
-        Paper(title,year,conf);
+        this(title,year,conf);
     }
 
     public Paper(int year,Conference conf, String title){
-        Paper(title,year,conf);
+        this(title,year,conf);
     }
 
     public Paper(Conference conf, int year, String title){
-        Paper(title,year,conf);
+        this(title,year,conf);
     }
 
     public Paper(Conference conf, String title, int year){
-        Paper(title,year,conf);
+        this(title,year,conf);
     }
 
     public Paper(int year, String title, String conf){
-        Paper(title,year,new Conference(conf));
+        this(title,year,new Conference(conf));
     }
 
     public Paper(String title, int year, String conf){
-        Paper(title,year,new Conference(conf));
+        this(title,year,new Conference(conf));
     }
 
 
@@ -110,7 +110,7 @@ class Paper extends Entry{
 
 
     public static void main(String[] args) {
-        Paper test =new Paper("paul", 1999);
+        Paper test =new Paper("paul", 1999, new Conference("Hello World"));
         test.display();
     }
 }

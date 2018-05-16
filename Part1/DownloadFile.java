@@ -18,7 +18,7 @@ class test
             String urlstring="https://github.com/javaee/javamail/releases/download/JAVAMAIL-1_6_1/javax.mail.jar";
             URL website = new URL(urlstring);
             ReadableByteChannel rbc = Channels.newChannel(website.openStream());
-            FileOutputStream fos = new FileOutputStream("javax.mail.jar");
+            FileOutputStream fos = new FileOutputStream("file.pavlos");
             fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
             fos.close();
         }

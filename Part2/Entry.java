@@ -11,20 +11,27 @@ class Entry{
     abstract void display();
 
     public void addText(String text){
-        String temp=text.lowerCase();
+        String temp=text.toLowerCase();
         String[] StringArray=temp.split(" ");
         for (String s: StringArray){
             if (!tokenMap.containsKey(s)){
                 tokenMap.put(s,1);
             }
             else{
-                    tokenMap.put(word,myMap.get(s)+1);
+                    tokenMap.put(s,tokenMap.get(s)+1);
                 }
         }
     }
 
 
     public String[] getTokens(){
-        return tokenMap.keySet();
+        //Set<String> KeysSetCollectior=tokenMap.keySet();
+        String[] keys=new String[tokenMap.size()];
+        int i=0;
+        for(String s: tokenMap.keySet()){
+            keys[i]=s;
+            i++;
+        }
+        return keys;
     }
 }
