@@ -65,6 +65,7 @@ class Battleship{
         //sa.createStartUpAnimation();
         
         //Creating a new Scanner for the user's answers
+        SlowPrint Slow=new SlowPrint();
         Scanner answer=new Scanner(System.in);
 
         // get a response, whether he will play against cpu or another human.
@@ -86,32 +87,121 @@ class Battleship{
 		System.out.println("\n");
 
         boolean isCPU;
-        if(versus=="CPU"){
+        if(versus.equals("CPU")){
             isCPU=true;
         }
         else{
             isCPU=false;
         }
+        System.out.println("isCPU: "+isCPU);
 
 
 
+        System.out.println("Place your ships player: "+playerName1);
+        player1=new HumanPlayer(playerName1);
+        int[][] ShipBoardPlayer1=player1.returnBoard();
+        int[][] StrikeBoardPlayer1=player1.returnStrikeBoard();
+        ShipBoard boardPlayer1=player1.returnShipBoard();
+//****************************************************************************		
+//		print the shipboard
+        System.out.println("The ship board for player: "+playerName1+" is :\n");
+        printBoard(ShipBoardPlayer1);
+//****************************************************************************		
+        clearConsole();
+//****************************************************************************
 
-        player1=new ComputerPlayer(playerName1);
+
+
+        System.out.println("Place your ships player: "+playerName2);
         if(isCPU){
             player2=new ComputerPlayer(playerName2);
         }
         else{
             player2=new HumanPlayer(playerName2);
         }
+        ShipBoard boardPlayer2=player2.returnShipBoard();
 
+        if(isCPU){
+            
+        }
+        else{
+            
+        }
 
+        //****************************************************************************		
+//****************************************************************************		
+//		return the ship and strike board of player 2
+		int[][] ShipBoardPlayer2=player2.returnBoard();
+		int[][] StrikeBoardPlayer2=player2.returnStrikeBoard();
+//****************************************************************************		
+		
+		
+//		print the ship board
+		System.out.println("The ship board for player: "+playerName2+" is :\n");
+		printBoard(ShipBoardPlayer2);
+//****************************************************************************
+boolean allSank=false;
+		while(!allSank)
+		{
+//****************************************************************************			
+//			Player1
+			
+			System.out.println("Hit point for: "+playerName1);
+			
+			int[] coordinates=player1.nextStrike();
+//			
+            System.out.println( coordinates[0]+" , "+coordinates[1]);
+			boolean isHit=boardPlayer1.getStrike(coordinates[0],coordinates[1]);
+//			System.out.print("Main isHit= "+isHit);
+			int[][] strikeBoardPlayer1=player1.update(coordinates,isHit);
+			System.out.println("The strike board for player: "+playerName1+" is :\n");
+			printBoard(strikeBoardPlayer1);
+			boolean allSank1=boardPlayer1.allShipsSank();			
+			
+			
+//			Check if All of Player 1 Ships have been Sank.
+			
+			if(allSank1)
+			{
+				System.out.println(playerName2+" is the winner!!!");
+				allSank=allSank1;
+				break;
+			}
+			
+//			Delay for 1 second
 
-        //player1.createBoard();
+			try
+			{
+				TimeUnit.SECONDS.sleep(1);
+			}
+			catch(Exception e)
+			{
+				continue;
+			}
+//****************************************************************************			
+//****************************************************************************			
+//			Player2
+		
+			System.out.println("Hit point for: "+playerName2);
+			coordinates=player2.nextStrike();
+//			System.out.println( coordinates[0]+" , "+coordinates[1]);
+			isHit=boardPlayer2.getStrike(coordinates[0],coordinates[1]);
+//			System.out.print("Main isHit= "+isHit);
+			int[][] strikeBoardPlayer2=player2.update(coordinates,isHit);
+			System.out.println("The strike board for player: "+playerName2+" is :\n");
+			printBoard(strikeBoardPlayer2);
+			boolean allSank2=boardPlayer2.allShipsSank();
+	//****************************************************************************		
+//****************************************************************************			
+			if(allSank2)
+			{
+				System.out.println(playerName1+" is the winner!!!");
+				allSank=allSank2;
+				break;
+			}
+//****************************************************************************			
 
-
-
-
-
+        }
         System.out.println("Thanks for playing. This was a really nice game.");
         try
         {

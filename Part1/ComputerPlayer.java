@@ -10,11 +10,11 @@ class ComputerPlayer extends Player{
 	private int Coordinate;
 	private int[][] ShipBoardP1=new int[10][10];
 	private int[][] strikeBoard=new int[10][10];
-	
+	ComputerShipBoard shipboard;
 
 // initialise the constructor
     public ComputerPlayer(String playerName){
-		super();
+		//super();
 		this.playerName=playerName;
 	}
 	
@@ -38,7 +38,8 @@ class ComputerPlayer extends Player{
     public void createBoard() {
 		//System.out.println("This is createBoard method in ComputerPlayer");
 		ComputerShipBoard Board=new ComputerShipBoard();
-	 //   ComputerShipBoard Board=new ComputerShipBoard();
+		shipboard=Board;
+		//   ComputerShipBoard Board=new ComputerShipBoard();
 	 	//System.out.println("Board: "+Board);
 		Board.enterAllShips();
 
@@ -49,7 +50,6 @@ class ComputerPlayer extends Player{
 		printBoard(ShipBoardP1);
 	
 	
-		//System.out.println("Exiting createBoard");
 	}
 	
 // return the strikeBoard
@@ -79,7 +79,10 @@ public int[][] returnBoard()
 	}
 
 
-
+	public ShipBoard returnShipBoard()
+	{
+		return shipboard;
+	}
 
 	// update the Strike board with the new hit	
 	public int[][] update(int[] coordinates, boolean isHit)
@@ -103,40 +106,13 @@ public int[][] returnBoard()
 
 
 
-
+//      creating a computer strategy in case needed.
+RandomStrategy pcStrategy= new RandomStrategy();
 
 // return an int[] with the next hit
     public int[] nextStrike()
 	{
-		boolean checkHit=true;
-		String ReadLine;
-		int[] coordinates=new int[2];
-
-		// If the position has been hit before it executes the code within the while.
-		while(checkHit)
-		{
-
-			ReadLine=String.valueOf((rand.nextInt(10)+1));
-			int Xcoord=BetweenLimits(ReadLine);
-			
-			ReadLine=String.valueOf((rand.nextInt(10)+1));
-			int Ycoord=BetweenLimits(ReadLine);
-			
-			//int[] coordinates={Xcoord,Ycoord};
-			coordinates [0]=Xcoord;
-			coordinates [1]=Ycoord;
-			
-			//check if posision has been stoke previously
-			if(strikeBoard[coordinates[0]-1][coordinates[1]-1]==0)
-			{
-				checkHit=false;
-			}
-			else
-			{
-				System.out.println("The posision has been stoke previously. Please try again.");
-			}
-		}
-		return coordinates;
+		return pcStrategy.nextStrike();
 	}
 
 

@@ -20,4 +20,6 @@ class Player{
     abstract int[][] returnStrikeBoard();
 
     abstract int[][] returnBoard();
+
+    abstract ShipBoard returnShipBoard();
 }
