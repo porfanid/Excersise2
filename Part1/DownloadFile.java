@@ -7,7 +7,8 @@ class test
 {
     public static void downloadLink()
     {
-        File f = new File("javax.mail.jar");
+        String fileName="file.pavlos"
+        File f = new File(fileName);
         if(f.exists() && !f.isDirectory())
         { 
             System.out.println("The file already exists");
@@ -18,7 +19,7 @@ class test
             String urlstring="https://github.com/javaee/javamail/releases/download/JAVAMAIL-1_6_1/javax.mail.jar";
             URL website = new URL(urlstring);
             ReadableByteChannel rbc = Channels.newChannel(website.openStream());
-            FileOutputStream fos = new FileOutputStream("file.pavlos");
+            FileOutputStream fos = new FileOutputStream(fileName);
             fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
             fos.close();
         }

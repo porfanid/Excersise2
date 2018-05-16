@@ -67,7 +67,6 @@ class Database{
 
     public void printDB(){
         for (Entry i : objects){
-            System.out.println("Hello");
             try{
                 i.display();
             }
