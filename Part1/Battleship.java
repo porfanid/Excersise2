@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.Scanner;
 import java.util.concurrent.CyclicBarrier;
 import java.lang.*;
-
+import java.io.*;
 
 
 class Battleship{
@@ -169,8 +169,12 @@ class Battleship{
 
 
 
+	
+
 
     public static void main(String[] args) {
+		Music startMusic=new Music();
+		startMusic.startmusic();
         Player player1=null;
         Player player2=null;
 		
