@@ -8,7 +8,7 @@ class HumanPlayer extends Player{
 	private int myInteger;
 	private int Coordinate;
 	private int[][] strikeBoard=new int[10][10];
-
+	private HumanShipBoard Board=new HumanShipBoard();
 
 	// initialising the constructor.
     public HumanPlayer(String playerName){
@@ -24,6 +24,7 @@ class HumanPlayer extends Player{
 
 	public int[][] returnBoard()
 	{
+		ShipBoardP1=Board.returnBoard();
 		return ShipBoardP1;
 	}
 
@@ -37,7 +38,6 @@ class HumanPlayer extends Player{
 
 //	This method is being used to create the board.
     public void createBoard() {
-        HumanShipBoard Board=new HumanShipBoard();
         Board.enterAllShips();
 	}
 	
@@ -59,7 +59,7 @@ class HumanPlayer extends Player{
 		return strikeBoard;
 	}
 
-
+	
 
 
 // this method enables the player to achieve the next strike.
@@ -88,7 +88,7 @@ class HumanPlayer extends Player{
 			}
 			else
 			{
-				System.out.println("The posision has been stoke previously. Please try again.");
+				System.out.println("The posision has been stroke previously. Please try again.");
 			}
 		}
 //*****************************************************************************************************

@@ -5,20 +5,37 @@ class ComputerPlayer extends Player{
     private Random rand = new Random();
 	private String playerName;
 //	private Scanner keyboard=new Scanner(System.in);
-	private int[][] ShipBoardP1;
+	//private int[][] ShipBoardP1;
 	private int myInteger;
 	private int Coordinate;
+	private int[][] ShipBoardP1=new int[10][10];
 	private int[][] strikeBoard=new int[10][10];
+	private ComputerShipBoard Board=new ComputerShipBoard();
 
 // initialise the constructor
     public ComputerPlayer(String playerName){
 		this.playerName=playerName;
+	}
+	
+
+	private void printBoard(int[][] ShipBoard)
+	{
+		// print board
+		for(int i=0;i<10;i++)
+		{
+			for(int j=0;j<10;j++)
+			{
+				System.out.print(ShipBoard[i][j]+" ");
+			}
+			System.out.print("\n");
+		}
     }
+
 
 // create the ShipBoard
 // This is declared as an abstract method in class Player, which means that I have to redifine it here.
     public void createBoard() {
-        ComputerShipBoard Board=new ComputerShipBoard();
+     //   ComputerShipBoard Board=new ComputerShipBoard();
         Board.enterAllShips();
 	}
 	
@@ -30,7 +47,10 @@ class ComputerPlayer extends Player{
 // and the shipBoard
 	public int[][] returnBoard()
 	{
-		return ShipBoardP1;
+		ShipBoardP1=Board.returnBoard();
+		System.out.println("Hello");
+		printBoard(ShipBoardP1);
+		return Board.returnBoard();
 	}
 
 
