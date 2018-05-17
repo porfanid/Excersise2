@@ -173,6 +173,8 @@ class Battleship{
 
 
     public static void main(String[] args) {
+		DownloadFile DownloadMusic=new DownloadFile();
+		DownloadMusic.showProcedure();
 		Music startMusic=new Music();
 		startMusic.startmusic();
         Player player1=null;

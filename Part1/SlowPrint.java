@@ -10,7 +10,7 @@ This class is created so that I can print some thing slowly.
 
 class SlowPrint
 {
-	public void Print(String message) throws InterruptedException
+	public void Print(String message)
 	{
         // Get message, convert to char array
         char[] chars = message.toCharArray();
@@ -19,7 +19,12 @@ class SlowPrint
         for (int i = 0; i < chars.length; i++)
 		{
             System.out.print(chars[i]);
-            Thread.sleep(100);
+            try{
+                Thread.sleep(100);
+            }
+            catch(Exception e){
+
+            }
         }
 		System.out.print("\n");
         // Repeat for all chars

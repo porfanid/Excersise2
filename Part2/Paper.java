@@ -48,12 +48,16 @@ class Paper extends Entry{
         this(title,year,new Conference(conf));
     }
 
+    public Paper(String title, String conf, int year){
+        this(title,year,new Conference(conf));
+    }
 
+// end of the instructors :)
+//----------------------------------------------------------------------------------------------
     public void addAuthor(Researcher newAuthor){
         authorList.add(newAuthor);
     }
-// end of the instructors :)
-//----------------------------------------------------------------------------------------------
+
 
 /*
 * I found this online. It is being used to remove the last comma from the toString method.
