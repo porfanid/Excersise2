@@ -168,15 +168,30 @@ class Battleship{
     }
 
 
-
+	private static void playMusic(){
+		System.out.println("Do you want to play music?(yes/no)");
+		String answer=keyboard.nextLine();
+		while(!answer.equals("yes")&&!answer.equals("no")){
+			System.out.println("Wrong input. Please try again");
+			answer=keyboard.nextLine();
+		}
+		if(answer.equals("no")){
+			return;
+		}
+		if(answer.equals("yes")){
+			//System.out.println("Plaese enter the filename.(Paths are also allowed.)");
+			//source=keyboard.nextLine();
+			Music startMusic=new Music();
+			startMusic.startmusic();
+		}
+	}
 	
 
 
     public static void main(String[] args) {
-		DownloadFile DownloadMusic=new DownloadFile();
-		DownloadMusic.showProcedure();
-		Music startMusic=new Music();
-		startMusic.startmusic();
+//		DownloadFile DownloadMusic=new DownloadFile();
+//		DownloadMusic.showProcedure();
+		playMusic();
         Player player1=null;
         Player player2=null;
 		
