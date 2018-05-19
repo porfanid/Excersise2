@@ -7,8 +7,7 @@ AM: 4134
 
 1st Excersise works perfectly.
 
-I also added the ability to play music from a wav file. however, this won't be available for a while, as it needs some modifications.
-
+I also added the ability to play music from a URL of my choice. This is necessary so that I don't have to turn in the wav file, as it is not possible to do that because music is a binary, not a text, file.
 
 
 

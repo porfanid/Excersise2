@@ -5,11 +5,7 @@ AM: 4134
 import java.io.*;
 import sun.audio.*;
 import java.net.*;
-/**
- * A simple Java sound file example (i.e., Java code to play a sound file).
- * AudioStream and AudioPlayer code comes from a javaworld.com example.
- * @author alvin alexander, devdaily.com.
- */
+
 public class Music
 {
   public void startmusic() 
@@ -19,18 +15,25 @@ public class Music
     InputStream in=null;
     try{
         //in= new FileInputStream(musicFile);
-        URL musicURL = new URL("http://cse.uoi.gr/~cse74134/app_resources/file.pavlos/");
+        URL musicURL = new URL("http://cse.uoi.gr/~cse74134/app_resources/file.pavlos");
         //InputStream temp=new InputStream(musicURL);
         in=musicURL.openStream();
     }
-    catch(Exception e) {System.out.println("Cannot Play music right now");}
+    catch(Exception e) {System.out.println("Cannot Play open stream now");}
     // create an audiostream from the inputstream
     AudioStream audioStream=null;
     try{
         audioStream = new AudioStream(in);
     }
-    catch(Exception e) {}
+    catch(Exception e) {System.out.println("Cannot view source");}
     // play the audio clip with the audioplayer class
     AudioPlayer.player.start(audioStream);
+    try{
+      Thread.sleep(3000);
+    }
+    catch(Exception e){
+      
+    }
   }
+  
 }
