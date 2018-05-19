@@ -30,5 +30,6 @@ class Index{
 
             //make year from String to int
             int year=Integer.parseInt(yearAsString);
+        }
     }
 }

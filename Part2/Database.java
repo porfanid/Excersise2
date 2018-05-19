@@ -14,13 +14,13 @@ class Database{
     ArrayList<Entry> objects=new ArrayList<Entry>();
     
     //Reading the info from file.
-    public void createDB(String filename) {
+    public void createDBFromTextFile(File database) {
         //initialising the Scanner. Here, there is a FileNotFoundException, which must be caught. This is possible by using try catch.
         Scanner input;
         try{
             //creating a Scanner that reads data from file with name filename.
             //Importing java.io.File is important for this step to work.
-            input = new Scanner (new File(filename));
+            input = new Scanner (database);
         }
         catch(Exception e){
             // I must declare a null Scanner. Otherwise it returns an error saqying that input might not have been initialised.
@@ -63,6 +63,26 @@ class Database{
             //System.out.println(input.hasNextLine());
         }
     }
+
+    public void createdbFromSQLite(String filename){
+
+    }
+
+
+    public void createDB(String filename){
+        Scanner keyboard=new Scanner(System.in);
+        File database=new File(filename);
+
+        FileEncoding getEncoding=new FileEncoding();
+        boolean isText=getEncoding.contentIsText(database,true);
+        if(isText){
+            createDBFromTextFile(database);
+        }
+        if(!isText){
+            createdbFromSQLite(filename);
+        }
+    }
+
 
 
     public void printDB(){
