@@ -5,13 +5,18 @@ AM: 4134
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.io.File;
+import java.io.PrintWriter;
 import java.util.Scanner;
+
+import java.sql.*;
+
 class Database{
     //initialising the fields
 
     HashMap<Researcher, String> researchers = new HashMap<Researcher, String>();
     HashMap<Conference, String> conferences = new HashMap<Conference, String>();
     ArrayList<Entry> objects=new ArrayList<Entry>();
+    //File database=new File(filename);
     
     //Reading the info from file.
     public void createDBFromTextFile(File database) {
@@ -64,21 +69,61 @@ class Database{
         }
     }
 
-    public void createdbFromSQLite(String filename){
+    public void createdbFromSQLite(File database){
+        
+        Connection c = null;
+        Statement stmt = null;
+        try {
+            PrintWriter FileData = new PrintWriter("temp");
 
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:"+database.getName());
+            c.setAutoCommit(false);
+            System.out.println("Opened database successfully");
+      
+            stmt = c.createStatement();
+            ResultSet rs = stmt.executeQuery( "SELECT * FROM COMPANY;" );
+            
+            while ( rs.next() ) {
+               int year = rs.getInt("year");
+               String  title = rs.getString("title");
+               String  authors = rs.getString("authors");
+               String conference = rs.getString("Conference");
+               
+               FileData.println(title);
+               FileData.println(authors);
+               FileData.println(conference);
+               FileData.println(year);
+            }
+            FileData.close ();
+            rs.close();
+            stmt.close();
+            c.close();
+         } catch ( Exception e ) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+         }
     }
 
 
     public void createDB(String filename){
         Scanner keyboard=new Scanner(System.in);
         File database=new File(filename);
-
-        FileEncoding getEncoding=new FileEncoding();
-        boolean isText=getEncoding.contentIsText(database,true);
+        boolean isText;
+        try{
+            isText=FileEncoding.contentIsText(database,true);
+        }catch(Exception e){
+            isText=false;
+        }
+        //FileEncoding getEncoding=null;
+        //getEncoding=new FileEncoding();
+        //System.out.println("isText: "+isText);
         if(isText){
+            //System.out.println("It's text");
             createDBFromTextFile(database);
         }
         if(!isText){
+            //System.out.println("It's binary");
             createdbFromSQLite(filename);
         }
     }
@@ -100,7 +145,7 @@ class Database{
 
     public static void main(String[] args) {
         Database test=new Database();
-        test.createDB("toy.txt");
+        test.createDB("database.ycd");
         test.printDB();
     }
 }

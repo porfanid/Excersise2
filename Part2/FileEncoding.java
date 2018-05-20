@@ -12,7 +12,7 @@ public enum FileEncoding {
      * Use this handle to grab the sole instance of this FileEncoding class. 
      */ 
     SINGLE_INSTANCE; 
-    public boolean contentIsText(final File file, boolean acceptUTF8encoding) throws IOException 
+    public static boolean contentIsText(final File file, boolean acceptUTF8encoding) throws IOException 
     { 
         final int BUFFER_SIZE = 10*1024; 
         boolean isText = true; 
@@ -49,7 +49,7 @@ public enum FileEncoding {
         return isText; 
     } 
  
-    private boolean isCharacterTextOrBinary ( boolean acceptUTF8encoding, int unsignedByte, int utf8value ) { 
+    private static boolean isCharacterTextOrBinary ( boolean acceptUTF8encoding, int unsignedByte, int utf8value ) { 
  
         final int ASCII_TEXT_SYMBOLS_LOWER_BOUND = 0x20; 
         final int ASCII_TEXT_SYMBOLS_UPPER_BOUND = 0x7E; 
