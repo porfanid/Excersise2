@@ -8,6 +8,8 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
+import javax.smartcardio.CardPermission;
+
 import java.sql.*;
 
 class Database{
@@ -70,39 +72,139 @@ class Database{
     }
 
     public void createdbFromSQLite(File database){
-        
-        Connection c = null;
-        Statement stmt = null;
+        Scanner answers=new Scanner(System.in);
+        Connection databaseConnection = null;
+        //Statement stmt = null;
         try {
             PrintWriter FileData = new PrintWriter("temp");
 
             Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:"+database.getName());
-            c.setAutoCommit(false);
+            databaseConnection = DriverManager.getConnection("jdbc:sqlite:"+database.getName());
+            databaseConnection.setAutoCommit(false);
             System.out.println("Opened database successfully");
-      
-            stmt = c.createStatement();
-            ResultSet rs = stmt.executeQuery( "SELECT * FROM COMPANY;" );
-            
-            while ( rs.next() ) {
-               int year = rs.getInt("year");
-               String  title = rs.getString("title");
-               String  authors = rs.getString("authors");
-               String conference = rs.getString("Conference");
-               
-               FileData.println(title);
-               FileData.println(authors);
-               FileData.println(conference);
-               FileData.println(year);
+
+
+/*            DatabaseMetaData md = databaseConnection.getMetaData();
+            ResultSet rstable = md.getTables(null, null, "%", null);
+            //rstable.open();
+            int i=-1;
+            while (rstable.next()) {
+                i++;
+                //System.out.println(rs.getString(3));
             }
+            String[] tableList=new String[i];
+            for(int j=0;j<i;j++){
+                tableList[i]=rstable.getString(3);
+            }
+*/
+
+            String desiredTable=null;
+
+
+
+//          if the database has only one table, use this one.
+            if(1==1){
+                desiredTable="cards";
+            }
+//          Otherwise, let the user choose.
+            else{
+                desiredTable="cards";
+/*
+                System.out.println("Please enter the number for the desired name you want to extract the data. Please keep in mind that the tables must use the following format. All caps, all small, or only the first one Capital. All the Collumns must use the same format.");
+                for (int j=0;j<tableList.length;j++){
+                    System.out.println("("+j+")"+" : "+tableList[j]);
+                }
+                int tableNO;
+                while(true){
+                    String tableNoAsString=answers.nextLine();
+                    try{
+                        tableNO=Integer.parseInt(tableNoAsString);
+                        if(tableNO<tableList.length||tableNO>0){
+                            break;
+                        }
+                        System.out.println("Wrong input. Please try again.");
+                    }
+                    catch(Exception e){
+                        System.out.println("Wrong input. Please try again.");
+                    }
+                }
+*/
+            }
+
+
+
+            ResultSet rs = databaseConnection.createStatement().executeQuery( "SELECT * FROM "+desiredTable+";" );
+            //rs.open();
+            try{
+                while ( rs.next() ) {
+                int year = rs.getInt("year");
+                String  title = rs.getString("title");
+                String  authors = rs.getString("authors");
+                String conference = rs.getString("conference");
+                
+                FileData.println(title);
+                FileData.println(authors);
+                FileData.println(conference);
+                FileData.println(year);
+                }
+            }
+            catch(Exception e){}
+
+
+            try{
+                while ( rs.next() ) {
+                    int year = rs.getInt("Year");
+                    String  title = rs.getString("Title");
+                    String  authors = rs.getString("Authors");
+                    String conference = rs.getString("Conference");
+                    
+                    FileData.println(title);
+                    FileData.println(authors);
+                    FileData.println(conference);
+                    FileData.println(year);
+                }
+            }
+            catch(Exception e) {}
+
+
+            try{
+                while ( rs.next() ) {
+                    int year = rs.getInt("YEAR");
+                    String  title = rs.getString("TITLE");
+                    String  authors = rs.getString("AUTHORS");
+                    String conference = rs.getString("CONFERENCE");
+                    
+                    FileData.println(title);
+                    FileData.println(authors);
+                    FileData.println(conference);
+                    FileData.println(year);
+                }
+            }
+            catch(Exception e) {}
+
+
+
+
+
             FileData.close ();
             rs.close();
-            stmt.close();
-            c.close();
+            databaseConnection.close();
          } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
          }
+
+
+
+         
+         File temp =new File("temp");
+         System.out.println(temp.exists());
+         createDBFromTextFile(temp);
+         Files.delete(temp);
+
+         System.out.println(temp.delete());
+         
+         //temp.delete();
     }
 
 
@@ -124,7 +226,7 @@ class Database{
         }
         if(!isText){
             //System.out.println("It's binary");
-            createdbFromSQLite(filename);
+            createdbFromSQLite(database);
         }
     }
 
