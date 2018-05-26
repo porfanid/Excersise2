@@ -23,36 +23,73 @@ class Paper extends Entry{
         this.conf=conf;
     }
     
+    public Paper(String title, int year, Conference conf){
+        //super(text);
+        this.title=title;
+        this.year=year;
+        this.conf=conf;
+    }
 
     public Paper(int year, String title, Conference conf,String text){
-        this(title,year,conf);
+        this(title,year,conf,text);
     }
 
     public Paper(String title,Conference conf, int year,String text){
-        this(title,year,conf);
+        this(title,year,conf,text);
     }
 
     public Paper(int year,Conference conf, String title,String text){
-        this(title,year,conf);
+        this(title,year,conf,text);
     }
 
     public Paper(Conference conf, int year, String title,String text){
-        this(title,year,conf);
+        this(title,year,conf,text);
     }
 
     public Paper(Conference conf, String title, int year,String text){
-        this(title,year,conf);
+        this(title,year,conf,text);
     }
 
     public Paper(int year, String title, String conf,String text){
-        this(title,year,new Conference(conf));
+        this(title,year,new Conference(conf),text);
     }
 
     public Paper(String title, int year, String conf,String text){
-        this(title,year,new Conference(conf));
+        this(title,year,new Conference(conf),text);
     }
 
     public Paper(String title, String conf, int year,String text){
+        this(title,year,new Conference(conf),text);
+    }
+    public Paper(int year, String title, Conference conf){
+        this(title,year,conf);
+    }
+
+    public Paper(String title,Conference conf, int year){
+        this(title,year,conf);
+    }
+
+    public Paper(int year,Conference conf, String title){
+        this(title,year,conf);
+    }
+
+    public Paper(Conference conf, int year, String title){
+        this(title,year,conf);
+    }
+
+    public Paper(Conference conf, String title, int year){
+        this(title,year,conf);
+    }
+
+    public Paper(int year, String title, String conf){
+        this(title,year,new Conference(conf));
+    }
+
+    public Paper(String title, int year, String conf){
+        this(title,year,new Conference(conf));
+    }
+
+    public Paper(String title, String conf, int year){
         this(title,year,new Conference(conf));
     }
 
@@ -82,7 +119,7 @@ class Paper extends Entry{
         String data="Title: "+title+"\nyear: "+year+"\nResearchers: ";
         // adding all the researchers...
         for (Researcher i: authorList){
-            System.out.println("hi");
+//            System.out.println("hi");
             data+=i.toString()+",";
         }
 //      removing the last comma
@@ -115,6 +152,23 @@ class Paper extends Entry{
 
 
 
+
+
+    
+
+
+
+    public int computeScore(String query){
+        int score=super.computeScore(query);
+        if(query.toLowerCase().equals(title.toLowerCase())){
+            score+=100;
+        }
+
+        if(query.toLowerCase().contains(title.toLowerCase())){
+            score+=50;
+        }
+        return score;
+    }
 
 
     public static void main(String[] args) {

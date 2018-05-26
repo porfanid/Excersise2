@@ -3,11 +3,13 @@ NAME: PAVLOS ORFANIDIS
 AM: 4134
 */
 import java.util.HashMap;
+import java.util.HashSet;
 abstract/**
 * Class Entry
 */
 class Entry{
-    HashMap<String,Integer> tokenMap=new HashMap<String,Integer>();
+
+    private HashMap<String,Integer> tokenMap=new HashMap<String,Integer>();
     
     
     public Entry(String text){
@@ -44,5 +46,25 @@ class Entry{
             i++;
         }
         return keys;
+    }
+
+
+    public HashSet<String> getKeys(){
+        return new HashSet<String>(tokenMap.keySet());
+    }
+
+
+    public int computeScore(String query){
+//      "\\W+" is used to include any other separators between words (like commas and semicolons) while spliting the sentence.  
+        String[] StringArray=temp.split("\\W+");
+        int  score=0;
+        for(int i=0;i<StringArray.length;i++){
+            for(int j=0;j<StringArray.length;j++){
+                if(i!=j && StringArray[i].equals(StringArray[j])){
+                    score++;
+                }
+            }
+        }
+        return score;
     }
 }

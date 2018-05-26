@@ -5,7 +5,7 @@ AM: 4134
 import java.util.ArrayList;
 class Conference extends Entry{
     // initialise the fields
-    String name;
+    private String name;
     private ArrayList<Paper> paperList= new ArrayList<Paper>();
 
 // initialise the constructor
@@ -13,7 +13,9 @@ class Conference extends Entry{
         super(text);
         this.name=name;
     }
-
+    public Conference(String name){
+        this.name=name;
+    }
 
 //  add a paper to the ArrayList
     public void addPaper(Paper newPaper){
@@ -35,6 +37,16 @@ class Conference extends Entry{
     }
 
     
+    public int computeScore(String query){
+        int score=super.computeScore(query);
+        if(query.toLowerCase().equals(name.toLowerCase())){
+            score+=100;
+        }
+        return score;
+    }
+
+
+
     public static void main(String[] args) {
         Conference test=new  Conference("Paul");
         test.display();

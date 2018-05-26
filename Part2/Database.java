@@ -12,11 +12,11 @@ class Database
 {
     //initialising the fields
 
-    HashMap<Researcher, String> researchers = new HashMap<Researcher, String>();
-    HashMap<Conference, String> conferences = new HashMap<Conference, String>();
+    private HashMap<Entry, String> researchers = new HashMap<Entry, String>();
+//    HashMap<Conference, String> conferences = new HashMap<Conference, String>();
     
     
-    ArrayList<Entry> objects=new ArrayList<Entry>();
+    private ArrayList<Entry> objects=new ArrayList<Entry>();
 
 
     //Reading the info from file.
@@ -63,17 +63,12 @@ class Database
 
             //creating new conference and adding it to hashmap
             objects.add(new Conference(conference));
-            conferences.put(new Conference(conference),conference);
+            researchers.put(new Conference(conference),conference);
             //System.out.println(input.hasNextLine());
         }
     }
-
     
-
-
     public void createDB(String filename){
-
-
 //      testing if the file provided is a text file
         Scanner keyboard=new Scanner(System.in);
         File database=new File(filename);
@@ -88,6 +83,7 @@ class Database
 
         while(!isText){
             System.out.println("This file is binary. Please try again.");
+            System.out.println("Please enter the name of the file: ");
             filename=keyboard.nextLine();
             database=new File(filename);
             try{
@@ -115,10 +111,14 @@ class Database
         }
     }
 
+    public HashMap<Entry, String> getIndex(){
+        return researchers;
+    }
+
 
     public static void main(String[] args) {
         Database test=new Database();
-        test.createDB("database.ycd");
+        test.createDB("toy.txt");
         test.printDB();
     }
 }

@@ -19,6 +19,9 @@ class Researcher extends Entry{
         super(text);
         this.name=name;
     }
+    public Researcher(String name){
+        this.name=name;
+    }
     // adding a new paper to the researchers collection.
     public void addPaper(Paper newPaper){
         paperList.add(newPaper);
@@ -35,6 +38,23 @@ class Researcher extends Entry{
         }
         System.out.println(data);
     }
+
+
+
+
+
+
+    public int computeScore(String query){
+        int score=super.computeScore(query);
+        if(query.toLowerCase().equals(name.toLowerCase())){
+            score+=100;
+        }
+        return score;
+    }
+
+
+
+
 
     public static void main(String[] args) {
         Researcher test=new  Researcher("Paul");
