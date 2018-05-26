@@ -9,7 +9,8 @@ class Conference extends Entry{
     private ArrayList<Paper> paperList= new ArrayList<Paper>();
 
 // initialise the constructor
-    public Conference(String name){
+    public Conference(String name,String text){
+        super(text);
         this.name=name;
     }
 

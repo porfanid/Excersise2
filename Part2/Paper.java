@@ -3,7 +3,10 @@ NAME: PAVLOS ORFANIDIS
 AM: 4134
 */
 import java.util.ArrayList;
+
 class Paper extends Entry{
+
+
     private String title;
     private int year;
     private ArrayList<Researcher> authorList= new ArrayList<Researcher>();
@@ -13,42 +16,43 @@ class Paper extends Entry{
 * There are many constructors available so that it doesn't matter in which order you write the title, year, Conference.
 */
 //----------------------------------------------------------------------------------------------------
-    public Paper(String title, int year, Conference conf){
+    public Paper(String title, int year, Conference conf,String text){
+        super(text);
         this.title=title;
         this.year=year;
         this.conf=conf;
     }
     
 
-    public Paper(int year, String title, Conference conf){
+    public Paper(int year, String title, Conference conf,String text){
         this(title,year,conf);
     }
 
-    public Paper(String title,Conference conf, int year){
+    public Paper(String title,Conference conf, int year,String text){
         this(title,year,conf);
     }
 
-    public Paper(int year,Conference conf, String title){
+    public Paper(int year,Conference conf, String title,String text){
         this(title,year,conf);
     }
 
-    public Paper(Conference conf, int year, String title){
+    public Paper(Conference conf, int year, String title,String text){
         this(title,year,conf);
     }
 
-    public Paper(Conference conf, String title, int year){
+    public Paper(Conference conf, String title, int year,String text){
         this(title,year,conf);
     }
 
-    public Paper(int year, String title, String conf){
+    public Paper(int year, String title, String conf,String text){
         this(title,year,new Conference(conf));
     }
 
-    public Paper(String title, int year, String conf){
+    public Paper(String title, int year, String conf,String text){
         this(title,year,new Conference(conf));
     }
 
-    public Paper(String title, String conf, int year){
+    public Paper(String title, String conf, int year,String text){
         this(title,year,new Conference(conf));
     }
 

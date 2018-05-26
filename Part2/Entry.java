@@ -8,11 +8,22 @@ abstract/**
 */
 class Entry{
     HashMap<String,Integer> tokenMap=new HashMap<String,Integer>();
+    
+    
+    public Entry(String text){
+        addText(text);
+    }
+
+    public Entry(){
+    }
+
+    
     abstract void display();
 
     public void addText(String text){
         String temp=text.toLowerCase();
-        String[] StringArray=temp.split(" ");
+//      "\\W+" is used to include any other separators between words (like commas and semicolons) while spliting the sentence.  
+        String[] StringArray=temp.split("\\W+");
         for (String s: StringArray){
             if (!tokenMap.containsKey(s)){
                 tokenMap.put(s,1);

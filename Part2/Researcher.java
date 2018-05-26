@@ -6,12 +6,17 @@ import java.util.ArrayList;
 /*
  * This Class represents the researcher.
  */
+
+
 class Researcher extends Entry{
+
+
     private String name;
 
     private ArrayList<Paper> paperList= new ArrayList<Paper>();
     // initialising the constructor.
-    public Researcher(String name){
+    public Researcher(String name,String text){
+        super(text);
         this.name=name;
     }
     // adding a new paper to the researchers collection.
