@@ -10,6 +10,7 @@ class QueryProcessor
         Scanner keyboard=new Scanner(System.in);
         System.out.println("Search: ");
         String query=keyboard.nextLine();
+        
         keyboard.close();
     }
 }
